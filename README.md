@@ -19,5 +19,4 @@ This project contains a relational database for a restaurant booking system.
 - Booking
 
 ## Diagrams
-
-![ER and RDM Diagrams](ER_and_RDM_Diagrams.png)
+ER and RDM diagrams
