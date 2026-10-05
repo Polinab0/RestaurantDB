@@ -154,7 +154,7 @@ JOIN Restaurant_Table rt ON b.tableID = rt.tableID
 JOIN Table_area ta ON rt.areaID = ta.areaID
 JOIN Booking_Status bs ON b.statusID = bs.statusID
 WHERE b.customerID = 1
-ORDER BY b.bookingDate, b.bookingTime;;
+ORDER BY b.bookingDate, b.bookingTime;
 
 
 -- Query 3: Get a list of all bookings for a given tableID,
