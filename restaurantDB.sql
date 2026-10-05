@@ -140,30 +140,39 @@ ORDER BY rt.tableNumber;
 -- Query 2: Get a list of all bookings for a given customer ordered by date
 SELECT
     b.bookingID,
+    c.firstName,
+    c.lastName,
+    rt.tableNumber,
+    ta.areaName,
     b.bookingDate,
     b.bookingTime,
     b.numberOfGuests,
-    rt.tableNumber,
-    ta.areaName,
     bs.statusName
 FROM Booking b
+JOIN Customer c ON b.customerID = c.customerID
 JOIN Restaurant_Table rt ON b.tableID = rt.tableID
 JOIN Table_area ta ON rt.areaID = ta.areaID
 JOIN Booking_Status bs ON b.statusID = bs.statusID
 WHERE b.customerID = 1
-ORDER BY b.bookingDate, b.bookingTime;
+ORDER BY b.bookingDate, b.bookingTime;;
 
 
 -- Query 3: Get a list of all bookings for a given tableID,
 -- including the customer, for a specific date
-SELECT 
+SELECT
     b.bookingID,
+    c.firstName,
+    c.lastName,
+    rt.tableNumber,
+    ta.areaName,
     b.bookingDate,
     b.bookingTime,
     b.numberOfGuests,
-    c.firstName,
-    c.lastName
+    bs.statusName
 FROM Booking b
 JOIN Customer c ON b.customerID = c.customerID
+JOIN Restaurant_Table rt ON b.tableID = rt.tableID
+JOIN Table_area ta ON rt.areaID = ta.areaID
+JOIN Booking_Status bs ON b.statusID = bs.statusID
 WHERE b.tableID = 2
 AND b.bookingDate = '2026-10-10';
