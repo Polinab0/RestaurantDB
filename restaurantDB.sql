@@ -127,15 +127,31 @@ VALUES
 
 
 -- Query 1: Get a list of all tables in the restaurant
-SELECT *
-FROM Restaurant_Table;
+SELECT
+    rt.tableID,
+    rt.tableNumber,
+    rt.capacity,
+    ta.areaName
+FROM Restaurant_Table rt
+JOIN Table_area ta ON rt.areaID = ta.areaID
+ORDER BY rt.tableNumber;
 
 
 -- Query 2: Get a list of all bookings for a given customer ordered by date
-SELECT *
-FROM Booking
-WHERE customerID = 1
-ORDER BY bookingDate;
+SELECT
+    b.bookingID,
+    b.bookingDate,
+    b.bookingTime,
+    b.numberOfGuests,
+    rt.tableNumber,
+    ta.areaName,
+    bs.statusName
+FROM Booking b
+JOIN Restaurant_Table rt ON b.tableID = rt.tableID
+JOIN Table_area ta ON rt.areaID = ta.areaID
+JOIN Booking_Status bs ON b.statusID = bs.statusID
+WHERE b.customerID = 1
+ORDER BY b.bookingDate, b.bookingTime;
 
 
 -- Query 3: Get a list of all bookings for a given tableID,
